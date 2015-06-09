@@ -110,7 +110,10 @@ public class Login extends javax.swing.JFrame {
                 Core.setUser(userName);
                 //set the user online
                 Core.setUserOnline(id);
+                Core.setSignOff(0);
                 //open the mainframe
+                //set ID in main
+                Main.userID = id;
                 new MainFrame().setVisible(true);
                 //close the login 
                 Login.this.dispose();

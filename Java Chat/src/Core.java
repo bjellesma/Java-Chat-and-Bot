@@ -1,4 +1,7 @@
 import java.io.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /*
  * To change this template, choose Tools | Templates
@@ -17,14 +20,19 @@ public class Core{
     
     static String user;
     static int userId;
+    static int loggedTime;
+    static long curTime;
     
     public static void setUserOnline(int id){
          try{
-        
+             userId = id;
             String query = "UPDATE `users` SET `online`=1 WHERE `id`="+id+";";
             //this doesn't require a result set
             Main.st.executeUpdate(query);
-            String query2 = "UPDATE `users` SET `time`=" + System.currentTimeMillis()/1000 + "WHERE `id`="+id+";";
+            curTime = System.currentTimeMillis()/1000;
+            loggedTime = (int) curTime;
+            String query2 = "UPDATE `users` SET `time`=" + loggedTime + " WHERE `id`="+id+";";
+            
             Main.st.executeUpdate(query2);
             
             
@@ -69,7 +77,6 @@ public class Core{
         try{
         
             String query = "INSERT INTO `users` ("+regFields+") VALUES ("+regData+");";
-            JOptionPane.showMessageDialog(null, query);
             //this doesn't require a result set
             Main.st.executeUpdate(query);
             
@@ -135,6 +142,13 @@ public class Core{
             
         }
     }
+
+    /*
+    *Function to get time of login
+    */
+    public static int getLogTime(){
+        return loggedTime;
+    }
     public static String getUser(){
         
         return user;
@@ -142,7 +156,18 @@ public class Core{
     public static int getUserId(){
         return userId;
     }
-    
+    /*
+    *Set signoff
+    */
+    public static void setSignOff(int signOff){
+        String query = "UPDATE `users` SET `signoff`="+signOff+" WHERE `id`="+userId+";";
+        try {
+            Main.st.executeUpdate(query);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+    }
     public static void copyfile(File file) throws FileNotFoundException, IOException{
         File f2 = new File(file.getName());
         

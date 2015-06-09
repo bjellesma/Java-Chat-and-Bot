@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2015 at 02:25 AM
+-- Generation Time: Jun 09, 2015 at 02:02 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -27,10 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `chat` (
+  `chatID` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(50) NOT NULL,
   `chat` varchar(50) NOT NULL,
-  `time` bigint(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `time` bigint(11) NOT NULL,
+  `transit` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`chatID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -49,15 +52,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `motto` varchar(50) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `bio` text,
+  `signoff` tinyint(4) NOT NULL DEFAULT '0',
+  `color` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `salt`, `time`, `online`, `pic`, `motto`, `name`, `bio`) VALUES
-(1, 'bjellz', 'password', NULL, NULL, 1, 'B-icon.jpg', '', '', NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
