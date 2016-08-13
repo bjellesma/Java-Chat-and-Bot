@@ -7,7 +7,7 @@
 * [Screenshots](#Screenshot "Screenshots")
 * [Licensing](#Licensing "Licensing")
 <a name="What-is-this"><h1>What Is This</h1></a>
-  <p>A chat program written in Java and makes a connection to a server via JBDC to find other connections</p>
+  <p>A chat program written in Java and makes a connection to a server via JDBC to find other connections</p>
 <a name="Prerequisites"><h1>Prerequisites</h1></a>
 * Download and install [JDK 7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * Download and install [Netbeans](https://netbeans.org/downloads/)
